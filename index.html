@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#c95b91">
+
+    <meta name="description"
+          content="مخطط دراسي لتنظيم الجدول والمهام والعادات">
+
+    <link rel="manifest" href="manifest.json">
+
+    <title>مخططي الدراسي</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <header class="topbar">
+
+        <div>
+            <h1>مخططي الدراسي</h1>
+
+            <p>
+                نظّم وقتك، مهامك، ودراستك بسهولة
+            </p>
+        </div>
+
+        <div class="actions">
+
+            <button id="installBtn"
+                    class="btn secondary hidden">
+                تثبيت التطبيق
+            </button>
+
+            <button id="settingsBtn"
+                    class="btn secondary">
+                الإعدادات
+            </button>
+
+            <button id="saveBtn"
+                    class="btn">
+                حفظ
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <nav class="tabs">
+
+        <button class="tab active"
+                data-tab="schedule">
+            الجدول الأسبوعي
+        </button>
+
+        <button class="tab"
+                data-tab="tasks">
+            المهام
+        </button>
+
+        <button class="tab"
+                data-tab="habits">
+            العادات
+        </button>
+
+        <button class="tab"
+                data-tab="stats">
+            الإحصائيات
+        </button>
+
+    </nav>
+
+
+    <main>
+
+        <section id="scheduleTab"
+                 class="tab-panel active">
+
+            <div class="section-head">
+
+                <div>
+
+                    <h2>
+                        الجدول الأسبوعي
+                    </h2>
+
+                    <span id="routineInfo"></span>
+
+                </div>
+
+                <button id="colorBtn"
+                        class="plus-btn">
+
+                    +
+
+                </button>
+
+            </div>
+
+
+            <div class="mobile-tools">
+
+                <button id="prevDayBtn"
+                        class="small">
+                    اليوم السابق
+                </button>
+
+                <strong id="mobileDayName"></strong>
+
+                <button id="nextDayBtn"
+                        class="small">
+                    اليوم التالي
+                </button>
+
+            </div>
+
+
+            <div id="schedule"
+                 class="schedule-wrap">
+            </div>
+
+        </section>
+
+
+        <section id="tasksTab"
+                 class="tab-panel">
+
+            <div class="section-head">
+
+                <div>
+
+                    <h2>مهامي</h2>
+
+                    <span>
+                        رتّب أولوياتك وتابع إنجازك
+                    </span>
+
+                </div>
+
+                <button id="addTaskBtn"
+                        class="btn">
+                    + إضافة مهمة
+                </button>
+
+            </div>
+
+
+            <div class="quick-add">
+
+                <input id="quickTaskInput"
+                       type="text"
+                       placeholder="اكتب مهمة سريعة">
+
+                <button id="quickAddBtn"
+                        class="btn">
+                    إضافة
+                </button>
+
+            </div>
+
+
+            <div id="tasksList"
+                 class="tasks-list">
+            </div>
+
+        </section>
+
+
+        <section id="habitsTab"
+                 class="tab-panel">
+
+            <div class="section-head">
+
+                <div>
+
+                    <h2>عاداتي الدراسية</h2>
+
+                    <span>
+                        ابنِ روتينًا ثابتًا خطوة بخطوة
+                    </span>
+
+                </div>
+
+                <button id="addHabitBtn"
+                        class="btn">
+                    + إضافة عادة
+                </button>
+
+            </div>
+
+
+            <div id="habitsList"
+                 class="habits-list">
+            </div>
+
+        </section>
+
+
+        <section id="statsTab"
+                 class="tab-panel">
+
+            <div class="section-head">
+
+                <div>
+
+                    <h2>
+                        ملخص تقدّمك
+                    </h2>
+
+                    <span>
+                        تابع ما أنجزته داخل التطبيق
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <strong id="statTasks">
+                        0
+                    </strong>
+
+                    <span>
+                        إجمالي المهام
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <strong id="statDone">
+                        0
+                    </strong>
+
+                    <span>
+                        مهام مكتملة
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <strong id="statPending">
+                        0
+                    </strong>
+
+                    <span>
+                        مهام متبقية
+                    </span>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <strong id="statHabits">
+                        0%
+                    </strong>
+
+                    <span>
+                        إنجاز العادات اليوم
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-box">
+
+                <div class="progress-label">
+
+                    <span>
+                        نسبة إنجاز المهام
+                    </span>
+
+                    <b id="progressText">
+                        0%
+                    </b>
+
+                </div>
+
+                <div class="progress">
+
+                    <div id="progressBar"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <span>
+            يتم حفظ معلوماتك تلقائيًا على هذا الجهاز.
+        </span>
+
+        <span id="saveStatus">
+            جاهز
+        </span>
+
+    </footer>
+
+</div>
+
+
+<!-- إعداد البداية -->
+
+<div id="setupModal"
+     class="modal hidden">
+
+    <div class="modal-card">
+
+        <h2>
+            ابدأ بتنظيم يومك
+        </h2>
+
+        <p>
+            اختر وقت الاستيقاظ ووقت نهاية الجدول.
+        </p>
+
+
+        <label>
+
+            وقت الاستيقاظ
+
+            <input id="wakeInput"
+                   type="time"
+                   value="07:00">
+
+        </label>
+
+
+        <label>
+
+            وقت نهاية الجدول
+
+            <input id="endInput"
+                   type="time"
+                   value="22:00">
+
+        </label>
+
+
+        <button id="startBtn"
+                class="btn full">
+
+            بدء التخطيط
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- إضافة مهمة -->
+
+<div id="taskModal"
+     class="modal hidden">
+
+    <div class="modal-card">
+
+        <button id="closeTaskBtn"
+                class="close">
+            ×
+        </button>
+
+
+        <h2 id="taskModalTitle">
+            إضافة مهمة
+        </h2>
+
+
+        <label>
+
+            اسم المهمة
+
+            <input id="taskTitle"
+                   type="text"
+                   placeholder="مثلاً: مراجعة المحاضرة">
+
+        </label>
+
+
+        <label>
+
+            اليوم
+
+            <select id="taskDay"></select>
+
+        </label>
+
+
+        <label>
+
+            الوقت
+
+            <input id="taskTime"
+                   type="time">
+
+        </label>
+
+
+        <label>
+
+            الأولوية
+
+            <select id="taskPriority">
+
+                <option value="عالية">
+                    عالية
+                </option>
+
+                <option value="متوسطة" selected>
+                    متوسطة
+                </option>
+
+                <option value="منخفضة">
+                    منخفضة
+                </option>
+
+            </select>
+
+        </label>
+
+
+        <button id="saveTaskBtn"
+                class="btn full">
+
+            حفظ المهمة
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- إضافة عادة -->
+
+<div id="habitModal"
+     class="modal hidden">
+
+    <div class="modal-card">
+
+        <button id="closeHabitBtn"
+                class="close">
+            ×
+        </button>
+
+
+        <h2>
+            إضافة عادة
+        </h2>
+
+
+        <label>
+
+            اسم العادة
+
+            <input id="habitTitle"
+                   type="text"
+                   placeholder="مثلاً: ساعة مراجعة">
+
+        </label>
+
+
+        <button id="saveHabitBtn"
+                class="btn full">
+
+            إضافة العادة
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>
